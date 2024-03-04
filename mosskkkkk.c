@@ -7,39 +7,6 @@ struct nguoichoi
     char ten[24];
     int solandoan;
 };
-float sacxuatcuabaitoan(int arr[])
-{
-    int dem=4;
-    for(int i=0;i<4;i++)
-    {
-        for(int j=i+1;j<4;j++)
-        {
-            if (arr[i]==arr[j])
-            {
-                dem--;
-                break;
-            }
-        }
-    }
-    if (dem==4)
-    {
-        return ((1./10)*(1./9)*(1./8)*(1./7));
-    }
-    if (dem==3)
-    {
-        return ((1./10)*(1./9)*(1./8));
-    }
-    if (dem==2)
-    {
-        return ((1./10)*(1./9));
-    }
-    if(dem==1)
-    {
-        return ((1./10));
-    }
-    
-    
-}
 void inrakyluc(struct nguoichoi* player,int dem)
 {
     for (int i=0;i<dem;i++)
@@ -58,10 +25,10 @@ int taosongaunhien()
     int randomNumber = rand() % 9000 + 1000; 
     return randomNumber;
 }
-void sosanhketqua(int number, int *arr, int *arrrd) {
+void sosanhketqua(int number[], int *arr, int *arrrd) {
     for (int i = 0; i < 4; i++) 
     { 
-        if (number == arrrd[i]) 
+        if (number[i] == arrrd[i]) 
         {
             arr[i] = arrrd[i];
         }
@@ -142,16 +109,19 @@ void inraketqua(int* arr,int* arrrd,int* dem)
      while (arr[0] == -1 || arr[1] == -1 || arr[2] == -1 || arr[3] == -1) 
      { 
        nhap:
-        printf("Nhập số bạn chọn để đoán (0-9): ");
-        int number;
-        scanf("%d", &number);
-        if(number>9 || number<0)
+        printf("Nhập 4 số bạn chọn để đoán (0-9): ");
+        int number[4];
+        for (int i=0;i<4;i++)
         {
-            printf("giá trị nhập không hợp lệ\n");
-            goto nhap;
+            scanf("%d", &number[i]);
+            if(number[i]>9 || number[i]<0)
+            {
+             printf("giá trị nhập không hợp lệ\n");
+                goto nhap;
+            }
+            (*dem)++;
         }
-        (*dem)++;
-        sosanhketqua(number, arr, arrrd);
+        sosanhketqua(&number, arr, arrrd);
         for (int i = 0; i < 4; i++) 
         {
             if (arr[i] != -1) 
