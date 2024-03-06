@@ -67,8 +67,22 @@ void luuvaofile(struct nguoichoi player)
     }
     fclose(file);
 }
+void loaddata()
+{
+    FILE *file = fopen("danhsach.txt", "r");
+     if (file == NULL) 
+     {
+        printf("Không thể mở tệp tin.\n");
+        exit(1);
+    }
+    scanf(file, "%d", &num_players);
+    for (int i = 0; i < num_players; i++) {
+        fscanf(file, "%s %d", players[i].name, &players[i].total_guesses);
+    }
 
-
+    fclose(file);
+}
+}
   void inraketqua(int* arr, int* arrrd, int* dem)
 {
 while (arr[0] == -1 || arr[1] == -1 || arr[2] == -1 || arr[3] == -1)
