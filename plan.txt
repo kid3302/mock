@@ -1,3 +1,0 @@
-3/3 tìm hiểu và viết code vẽ diagram 
-4/3 sửa code và vẽ dỉagram
-6/3 sửa lỗi và vẽ sequence
